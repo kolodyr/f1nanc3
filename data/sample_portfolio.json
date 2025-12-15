@@ -1,0 +1,42 @@
+{
+  "portfolio_name": "Sample FIRE Portfolio",
+  "last_updated": "2025-12-15",
+  "currency": "USD",
+  "assets": [
+    {
+      "name": "VOO",
+      "description": "Vanguard S&P 500 ETF",
+      "category": "stocks",
+      "value": 112.0,
+      "target_allocation": 0.60,
+      "risk_level": 3,
+      "notes": "Core US large-cap exposure"
+    },
+    {
+      "name": "QQQ",
+      "description": "Invesco QQQ (Nasdaq-100)",
+      "category": "stocks",
+      "value": 56.0,
+      "target_allocation": 0.30,
+      "risk_level": 4,
+      "notes": "Tech-heavy growth component"
+    },
+    {
+      "name": "WTAI",
+      "description": "WisdomTree AI ETF",
+      "category": "stocks",
+      "value": 18.0,
+      "target_allocation": 0.10,
+      "risk_level": 5,
+      "notes": "AI/emerging tech exposure"
+    }
+  ],
+  "metadata": {
+    "total_value": 186.0,
+    "target_annual_return": 0.08,
+    "risk_tolerance": "moderate",
+    "investment_horizon": "15-20 years",
+    "strategy": "Buy and hold with monthly contributions"
+  },
+  "notes": "This is a sample portfolio for demonstration. Replace with your actual holdings."
+}
