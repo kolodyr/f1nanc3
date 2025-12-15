@@ -7,6 +7,12 @@
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
 ---
+## 👤 Who is this for?
+
+This project is intended for:
+- Individuals interested in FIRE (Financial Independence, Retire Early)
+- Beginners learning Python through a real-world finance project
+- Developers building personal finance tools or dashboards
 
 ## 🎯 Features
 
