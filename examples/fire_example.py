@@ -7,7 +7,7 @@ Demonstrates how to use the FIRE calculator for financial planning.
 import sys
 sys.path.append('..')
 
-from src.fire_calculator import FIRECalculator
+from f1nanc3.fire_calculator import FIRECalculator
 
 
 def example_basic_fire():
