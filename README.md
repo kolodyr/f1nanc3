@@ -14,6 +14,21 @@ This project is intended for:
 - Beginners learning Python through a real-world finance project
 - Developers building personal finance tools or dashboards
 
+## 🚀 Quick Start
+
+```
+git clone git@github.com:kolodyr/f1nanc3.git
+cd f1nanc3
+
+python3 -m venv .venv
+source .venv/bin/activate
+
+pip3 install -r requirements.txt
+
+# Run examples
+PYTHONPATH=. python3 examples/fire_example.py
+```
+
 ## 🎯 Features
 
 ### 🔥 FIRE Calculator
