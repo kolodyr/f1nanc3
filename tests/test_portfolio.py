@@ -1,5 +1,5 @@
 import pytest
-from src.f1nanc3.portfolio import InvestmentPortfolio # Припускаємо, що src/f1nanc3/portfolio.py – це шлях до файлу
+from f1nanc3.portfolio import InvestmentPortfolio
 
 # Базові дані для тестування
 @pytest.fixture

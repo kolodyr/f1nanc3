@@ -1,7 +1,0 @@
-from f1nanc3.fire_calculator import FIRECalculator
-
-def test_basic_summery_runs():
-    calc = FIRECculator(current_net_worth=5000, monthly_savings=300, annual_expences=12000)
-    out = calc.summary() # якщо summery друкує - краще зробити щоб ще й return-ив dict/str
-    assert out is not None
-
