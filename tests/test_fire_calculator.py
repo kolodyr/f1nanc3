@@ -7,4 +7,10 @@ def test_basic_summary_runs():
         annual_expenses=12000,
         annual_return=0.07,
     )
-    calc.summary()  # або що там повертає/друкує
+
+    out = calc.summary()
+
+    assert isinstance(out, dict)
+    assert "fire_number" in out
+    assert out["fire_number"] > 0
+    assert out["progress_percent"] >= 0

@@ -29,11 +29,11 @@ def example_basic_fire():
     years_to_fire = calc.calculate_years_to_fire()
     target_year = 2025 + int(years_to_fire)
     
-    print(f"\n📊 Your FIRE Numbers:")
+    print("\n📊 Your FIRE Numbers:")
     print(f"   Current Net Worth: ${calc.current_net_worth:,.0f}")
     print(f"   Monthly Savings: ${calc.monthly_savings:,.0f}")
     print(f"   Annual Expenses: ${calc.annual_expenses:,.0f}")
-    print(f"\n🎯 FIRE Target:")
+    print("\n🎯 FIRE Target:")
     print(f"   FIRE Number (25x expenses): ${fire_number:,.0f}")
     print(f"   Years to FIRE: {years_to_fire:.1f} years")
     print(f"   Target Year: {target_year}")
@@ -117,7 +117,7 @@ def example_timeline():
     timeline = calc.generate_timeline(years=15)
     fire_number = calc.calculate_fire_number()
     
-    print(f"\n📅 Net Worth Projection (Next 15 Years):")
+    print("\n📅 Net Worth Projection (Next 15 Years):")
     print(f"\n{'Year':<10} {'Net Worth':<20} {'Progress':<15}")
     print("-" * 45)
     
