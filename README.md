@@ -268,7 +268,7 @@ This toolkit is perfect for:
 
 ## 📬 Contact
 
-**Author:** Oleh Kudybyn  
+**Author:** Oleh Kudybyn
 **Project:** [github.com/kolodyr/f1nanc3](https://github.com/kolodyr/f1nanc3)
 
 ---

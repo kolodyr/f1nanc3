@@ -99,3 +99,9 @@ config_local.py
 
 # Obsidian
 .obsidian/
+*.save
+
+# editor temp files
+*.swp
+*.swo
+*~
