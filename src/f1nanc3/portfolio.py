@@ -4,7 +4,7 @@ Portfolio Management Module
 Track and analyze investment portfolios.
 """
 
-from typing import Dict, List, Optional
+from typing import Dict, List
 from dataclasses import dataclass
 from enum import Enum
 
@@ -44,12 +44,71 @@ class Asset:
         return 0.0
 
 
-class Portfolio:
+# --- API для Portfolio (згідно з вимогою) ---
+
+@dataclass
+class InvestmentPortfolio:
     """
-    Portfolio tracking and analysis.
+    Мінімальний API для Portfolio, що використовує кількість активів (holdings)
+    та ціни (prices) для розрахунків.
+    """
     
-    Manages multiple assets and provides analysis tools.
-    """
+    # тикер → кількість активів (наприклад, акцій, монет)
+    holdings: Dict[str, float]
+    name: str = "My Investment Portfolio"
+
+    def total_value(self, prices: Dict[str, float]) -> float:
+        """
+        Розраховує загальну вартість портфеля, використовуючи надані ціни.
+        
+        Args:
+            prices: Словник з тикерами та їхніми поточними цінами (тикер → ціна).
+            
+        Returns:
+            Загальна вартість портфеля.
+        """
+        total = 0.0
+        for ticker, quantity in self.holdings.items():
+            if ticker in prices:
+                total += quantity * prices[ticker]
+            # Якщо ціна не надана, ігноруємо актив
+            # Можна додати обробку помилок або логування
+            
+        return total
+
+    def weights(self, prices: Dict[str, float]) -> Dict[str, float]:
+        """
+        Розраховує нормовані ваги активів у портфелі (від 0 до 1).
+        
+        Args:
+            prices: Словник з тикерами та їхніми поточними цінами.
+            
+        Returns:
+            Словник з тикерами та їхніми нормованими вагами.
+        """
+        total = self.total_value(prices)
+        
+        if total == 0:
+            return {}
+            
+        weights_dict = {}
+        for ticker, quantity in self.holdings.items():
+            if ticker in prices:
+                asset_value = quantity * prices[ticker]
+                weights_dict[ticker] = asset_value / total
+                
+        return weights_dict
+
+    def __repr__(self) -> str:
+        """Рядкова репрезентація."""
+        return f"InvestmentPortfolio('{self.name}', {len(self.holdings)} holdings)"
+
+# --- Існуючий клас Portfolio (не змінений, як додатковий інструмент) ---
+
+class Portfolio:
+    # ... (Весь ваш оригінальний клас Portfolio тут) ...
+    # Я залишу його без змін, оскільки ви просили API, що базується на 'holdings' і 'prices',
+    # що краще реалізовано у InvestmentPortfolio.
     
     def __init__(self, name: str = "My Portfolio"):
         """
@@ -221,6 +280,41 @@ class Portfolio:
 def main():
     """Example usage of Portfolio."""
     
+    # --- Тестування InvestmentPortfolio API ---
+    print("--- InvestmentPortfolio API Test ---")
+    
+    # 1. Створюємо приклад портфеля з кількістю активів (holdings)
+    holdings = {
+        "TSLA": 5.0,     # 5 акцій TSLA
+        "AAPL": 10.0,    # 10 акцій AAPL
+        "BTC": 0.05,     # 0.05 BTC
+    }
+    invest_portfolio = InvestmentPortfolio(holdings=holdings, name="Tech Crypto Mix")
+    
+    # 2. Визначаємо поточні ціни
+    current_prices = {
+        "TSLA": 250.00,
+        "AAPL": 180.00,
+        "BTC": 45000.00,
+    }
+
+    # 3. Розраховуємо загальну вартість
+    total_value = invest_portfolio.total_value(current_prices)
+    print(f"Portfolio: {invest_portfolio.name}")
+    print(f"Total Value: ${total_value:,.2f}")
+    
+    # 4. Розраховуємо ваги
+    weights = invest_portfolio.weights(current_prices)
+    print("\nAsset Weights:")
+    for ticker, weight in weights.items():
+        print(f"  {ticker}: {weight*100:.2f}%")
+    
+    
+    print("\n" + "="*50 + "\n")
+    
+    # --- Існуючий приклад використання Portfolio ---
+    print("--- Existing Portfolio Class Test ---")
+
     # Create portfolio
     portfolio = Portfolio("IBKR Portfolio")
     
@@ -234,16 +328,16 @@ def main():
     
     print(f"Portfolio: {analysis['name']}")
     print(f"Total Value: ${analysis['total_value']:,.2f}")
-    print(f"\nAllocation:")
+    print("\nAllocation:")
     for asset, alloc in analysis['allocation'].items():
         print(f"  {asset}: {alloc*100:.1f}%")
     
     print(f"\nRisk Score: {analysis['risk_score']:.1f}/10")
     
-    print(f"\nRebalancing Suggestions:")
+    print("\nRebalancing Suggestions:")
     if analysis['rebalancing']:
         for asset, suggestion in analysis['rebalancing'].items():
-            print(f"  {asset}: {suggestion['action'].upper()} ${suggestion['amount']:.2f}")
+            print(f"  {suggestion['action'].upper()} ${suggestion['amount']:.2f} of {asset}")
     else:
         print("  No rebalancing needed ✓")
 
