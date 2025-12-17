@@ -95,7 +95,7 @@ class FIRECalculator:
                 )
 
                 years = calc.calculate_years_to_fire()
-                name = f"${savings}/mo @ {return_rate*100:.0f}%"
+                name = f"${savings}/mo @ {return_rate * 100:.0f}%"
 
                 scenarios[name] = {
                     "years": years,
@@ -120,18 +120,14 @@ class FIRECalculator:
         years_to_fire = self.calculate_years_to_fire()
 
         progress_percent = (
-            self.current_net_worth / fire_number * 100
-            if fire_number > 0
-            else 0.0
+            self.current_net_worth / fire_number * 100 if fire_number > 0 else 0.0
         )
 
         return {
             "fire_number": fire_number,
             "current_net_worth": self.current_net_worth,
             "progress_percent": progress_percent,
-            "years_to_fire": None
-            if years_to_fire == float("inf")
-            else years_to_fire,
+            "years_to_fire": None if years_to_fire == float("inf") else years_to_fire,
             "monthly_savings": self.monthly_savings,
             "annual_expenses": self.annual_expenses,
             "annual_return": self.annual_return,

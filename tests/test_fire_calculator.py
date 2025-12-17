@@ -1,5 +1,6 @@
 from f1nanc3.fire_calculator import FIRECalculator
 
+
 def test_basic_summary_runs():
     calc = FIRECalculator(
         current_net_worth=5000,
